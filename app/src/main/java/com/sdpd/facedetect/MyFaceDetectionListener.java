@@ -2,10 +2,8 @@ package com.sdpd.facedetect;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.hardware.Camera;
-import android.media.MediaPlayer;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -30,19 +28,20 @@ class MyFaceDetectionListener implements Camera.FaceDetectionListener {
     private Camera.PictureCallback mPicture=null;
     private Camera mCamera=null;
     private void train() {
-        kairos = new Kairos();
-        String app_id = "965b63ae";
-        String api_key = "424e9d44236631b1a02e13d4e784dcfe";
+        kairos=new Kairos();
+        String app_id="965b63ae";
+        String api_key="424e9d44236631b1a02e13d4e784dcfe";
         kairos.setAuthentication(activity, app_id, api_key);
         /*try {
-            Bitmap image = BitmapFactory.decodeResource(activity.getResources(), R.drawable.n13);
+            Bitmap image=BitmapFactory.decodeResource(activity.getResources()
+            , R.drawable.n13);
             String subjectId = "Nidhi";
             String galleryId = "friends";
             String selector = "FULL";
             String multipleFaces = "false";
             String minHeadScale = "0.25";
-            /*myKairos.enroll(image, subjectId, galleryId, selector, multipleFaces, minHeadScale,
-                    listener);
+            myKairos.enroll(image, subjectId, galleryId, selector,
+            multipleFaces, minHeadScale, listener);
             image = BitmapFactory.decodeResource(activity.getResources(), R.drawable.n23);
             myKairos.enroll(image, subjectId, galleryId, selector, multipleFaces, minHeadScale,
                     listener);
@@ -65,15 +64,15 @@ class MyFaceDetectionListener implements Camera.FaceDetectionListener {
     }
     public void getPerson() {
         Log.d(TAG, "Picture clicked!");
-        Bitmap image = BitmapFactory.decodeFile(CameraActivity.getOutputMediaFile().getPath());
+        Bitmap image=BitmapFactory.decodeFile(CameraActivity.getOutputMediaFile().getPath());
         Matrix matrix=new Matrix();
         matrix.setRotate(90, image.getWidth()/2, image.getHeight()/2);
         image=Bitmap.createBitmap(image, 0, 0, image.getWidth(), image.getHeight(), matrix, false);
-        String galleryId = "friends";
-        String selector = "FULL";
-        String threshold = "0.75";
-        String minHeadScale = "0.25";
-        String maxNumResults = "25";
+        String galleryId="friends";
+        String selector="FULL";
+        String threshold="0.75";
+        String minHeadScale="0.25";
+        String maxNumResults="25";
         String TAG = "MyFaceDetectionListener";
         try {
             kairos.recognize(image, galleryId, selector, threshold, minHeadScale, maxNumResults,
